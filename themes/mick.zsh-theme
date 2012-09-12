@@ -3,7 +3,7 @@ local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
 # for vim prompt
 function vim_pwd() {
-  local _tmpdirmaxlen=35
+  local _tmpdirmaxlen=55
   local _trunc_symbol=".."
   local _vim_dirname="${PWD/#$HOME/~}"
 

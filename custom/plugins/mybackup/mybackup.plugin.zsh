@@ -6,6 +6,8 @@ function backupconfigs()
   if [ -d "${BPATH}" ]; then
     echo "Backing up .bashrc to ${BPATH}/bashrc"
     cp ~/.bashrc ${BPATH}/bashrc
+    echo "Backing up .zshrc to ${BPATH}/zshrc"
+    cp ~/.bashrc ${BPATH}/bashrc
     echo "Backing up .gitconfig to ${BPATH}/gitconfig"
     cp ~/.gitconfig ${BPATH}/gitconfig
     echo "Backing up .gitignore_global to ${BPATH}/gitignore_global"
