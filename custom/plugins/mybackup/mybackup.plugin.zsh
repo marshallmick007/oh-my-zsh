@@ -37,10 +37,8 @@ function backupconfigs()
     echo "Backing up .osx"
     cp ~/.osx ${BPATH}/_osx
     echo "Backing up VIM"
-    cp ~/.janus.rake ${BPATH}/vim/janus.rake
     cp ~/.vim/vimrc ${BPATH}/vim/vimrc
     cp ~/.vim/gvimrc ${BPATH}/vim/gvimrc
-    cp ~/.vim/README.markdown ${BPATH}/vim/README.markdown
     cp ~/.vimrc.local ${BPATH}/vimrc.local
     cp ~/.gvimrc.local ${BPATH}/gvimrc.local
     echo "Backing up MongoDb"

@@ -14,6 +14,7 @@ alias rm="rm -i"
 alias vi="mvim"
 alias vim="mvim"
 alias ff="/Applications/Firefox.app/Contents/MacOS/firefox-bin"
+alias pandora="pianobar"
 
 alias f='open -a Finder '
 
