@@ -3,19 +3,23 @@ local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
 # for vim prompt
 function vim_pwd() {
-  local _tmpdirmaxlen=55
+  # TODO: Figure out how wide the terminal is
+  local _tmpdirmaxlen=45
   local _trunc_symbol=".."
   local _vim_dirname="${PWD/#$HOME/~}"
 
+  # account for the added overhead of the git prompt
+  if [ ${#$(git_prompt_info)} -gt 0 ]; then
+    _tmpdirmaxlen=32
+  fi
   local _dir=${PWD##*/}
   _tmpdirmaxlen=$(( ( _tmpdirmaxlen < ${#_dir} ) ? ${#_dir} : _tmpdirmaxlen ))
-
   local _tmpdiroffset=$(( ${#_vim_dirname} - _tmpdirmaxlen ))
   local _tmpdir=`pwd | sed "s#$HOME#~#"`
 
   if [ ${_tmpdiroffset} -gt "0" ]; then
     _vim_dirname=''
-      if [[ $_tmpdir == "~" ]]; then
+    if [[ $_tmpdir == "~" ]]; then
       _vim_dirname=$_tmpdir
     else
       _vim_dirname=`dirname "${_tmpdir}" | sed -E "s/\/(.)[^\/]*/\/\1/g"`
@@ -26,6 +30,7 @@ function vim_pwd() {
       _vim_dirname="${_vim_dirname}/`basename "${_tmpdir}"`"
     fi
   fi
+  #echo ${_tmpdiroffset} 
   echo "${_vim_dirname}"
 }
 
