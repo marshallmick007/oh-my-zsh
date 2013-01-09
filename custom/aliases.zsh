@@ -18,6 +18,8 @@ alias pandora="pianobar"
 
 alias f='open -a Finder '
 
+alias guard='bundle exec guard start -i'
+
 alias HEX="ruby -e 'printf(\"0x%X\n\", ARGV[0])'"
 alias DEC="ruby -e 'printf(\"%d\n\", ARGV[0])'"
 alias BIN="ruby -e 'printf(\"%bb\n\", ARGV[0])'"
