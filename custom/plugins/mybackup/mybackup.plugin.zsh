@@ -63,6 +63,20 @@ function backupscripts()
   fi
 }
 
+function backupssh()
+{
+  BPATH="${BACKUPDIR}/ssh"
+  mkdir -p ${BPATH}
+  if [ -d "${BPATH}" ]; then
+    echo -e "${fg[magenta]}Backing up ~/.ssh folder to ${BPATH}${reset_color}"
+    cp ~/.ssh/config ${BPATH}/config
+    cp ~/.ssh/id_rsa_vagrant ${BPATH}/id_rsa_vagrant
+  else
+    echo "Backup directory ${BPATH} does not exist!"
+  fi
+
+}
+
 function backup1pass()
 {
   echo -e "${fg[magenta]}Backing up 1Password keychain${BPATH}${reset_color}"

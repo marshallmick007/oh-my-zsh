@@ -3,6 +3,8 @@ local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
 # for vim prompt
 function vim_pwd() {
+  # similar function to this
+  # echo $(pwd | perl -pe "s|^$HOME|~|g; s|/([^/])[^/]*(?=/)|/\$1|g")
   # TODO: Figure out how wide the terminal is
   local _tmpdirmaxlen=45
   local _trunc_symbol=".."
