@@ -27,6 +27,8 @@ alias DEC="ruby -e 'printf(\"%d\n\", ARGV[0])'"
 alias BIN="ruby -e 'printf(\"%bb\n\", ARGV[0])'"
 alias WORD="ruby -e 'printf(\"0x%04X\n\", ARGV[0])'"
 
+alias prettyjson="python -mjson.tool"
+
 
 # Get readable list of network IPs
 #alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
