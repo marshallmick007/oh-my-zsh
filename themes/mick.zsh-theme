@@ -17,7 +17,7 @@ function vim_pwd() {
   local _dir=${PWD##*/}
   _tmpdirmaxlen=$(( ( _tmpdirmaxlen < ${#_dir} ) ? ${#_dir} : _tmpdirmaxlen ))
   local _tmpdiroffset=$(( ${#_vim_dirname} - _tmpdirmaxlen ))
-  local _tmpdir=`pwd | sed "s#$HOME#~#"`
+  local _tmpdir="`pwd | sed "s#$HOME#~#"`"
 
   if [ ${_tmpdiroffset} -gt "0" ]; then
     _vim_dirname=''
