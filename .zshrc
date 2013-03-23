@@ -44,7 +44,7 @@ set -g visual-bell on
 # for Postgress.app
 PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
 PATH="/Applications/MAMP/bin/php5.2/bin:$PATH"
-PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:$PATH;
+PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:/usr/local/sbin:$PATH;
 
 # Android SDK
 PATH="${HOME}/Applications/Android Developer Toolkit/sdk/platform-tools:$PATH"

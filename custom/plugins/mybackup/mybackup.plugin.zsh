@@ -87,6 +87,34 @@ function backup1pass()
   fi
 }
 
+function backupnginx()
+{
+  FILESROOT="/etc"
+  OS=$(uname)
+  if [ $OS = "Darwin" ]; then
+    FILESROOT="/usr/local/etc"
+  fi
+  BPATH="${BACKUPDIR}/nginx"
+  mkdir -p ${BPATH}
+
+  if [ -d "${BPATH}" ]; then
+    echo -e "${fg[magenta]}Backing up nginx to ${BPATH}${reset_color}"
+    cp -Rv ${FILESROOT}/nginx/* ${BPATH}
+  else
+    echo "Backup directory ${BPATH} does not exist!"
+  fi
+
+  BPATH="${BACKUPDIR}/php"
+  mkdir -p ${BPATH}
+
+  if [ -d "${BPATH}" ]; then
+    echo -e "${fg[magenta]}Backing up php to ${BPATH}${reset_color}"
+    cp -Rv ${FILESROOT}/php/* ${BPATH}
+  else
+    echo "Backup directory ${BPATH} does not exist!"
+  fi
+}
+
 function backup()
 {
   #TODO:  Backup CyberDuck bookmarks
@@ -96,6 +124,7 @@ function backup()
   #       Select Documents
   backupscripts
   backupconfigs
+  backupnginx
   backup1pass
 }
 
