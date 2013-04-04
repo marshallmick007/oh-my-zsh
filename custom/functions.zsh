@@ -12,7 +12,7 @@ function ls-net()
 }
 
 # ls archives (inspired by `extract`)
-lsz() {
+function lsz() {
   if [ $# -ne 1 ]
   then
     echo "lsz filename.[tar,tgz,gz,zip,etc]"
