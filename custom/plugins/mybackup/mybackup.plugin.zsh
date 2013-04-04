@@ -43,7 +43,8 @@ function backupconfigs()
     cp ~/.gvimrc.local ${BPATH}/gvimrc.local
     echo "Backing up MongoDb"
     cp ~/.mongodb/mongod.conf ${BPATH}/mongod.conf
-
+    echo "Backing up LaunchAgents"
+    cp ~/Library/LaunchAgents/org.mickelson.* ${BPATH}
     echo -e "${fg[magenta]}Dumping dot files to github dropbox. ${BACKUPGIT}${reset_color}"
     cp -Rv ${BPATH}/* ${BACKUPGIT}
     echo -e "${fg[red]}Don't forget to git commit the files in ${BACKUPGIT}${reset_color}"
