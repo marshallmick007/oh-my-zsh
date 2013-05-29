@@ -1,8 +1,55 @@
 # ZSH Theme - Preview: http://gyazo.com/8becc8a7ed5ab54a0262a470555c3eed.png
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
+# adapted from https://github.com/nojhan/liquidprompt/blob/master/liquidprompt
+
+# TODO: try to only query for MICK_OS and _MICK_CPUNUM once, when the shell starts
+#       to avoid extraneous calls to sysctl which might slow things down
+
+# LP_OS detection, default to Linux
+case $(uname) in
+    FreeBSD) MICK_OS=FreeBSD ;;
+    Darwin) MICK_OS=Darwin ;;
+    *) MICK_OS=Linux ;;
+esac
+
+# Get cpu count
+case "$MICK_OS" in
+    Linux) _MICK_CPUNUM=$( nproc 2>/dev/null || grep -c '^[Pp]rocessor' /proc/cpuinfo ) ;;
+    FreeBSD|Darwin) _MICK_CPUNUM=$( sysctl -n hw.ncpu ) ;;
+esac
+
+# get current load
+case "$MICK_OS" in
+    Linux)
+        _mick_cpu_load () {
+            local load eol
+            read load eol < /proc/loadavg
+            echo "$load"
+        }
+        ;;
+    Darwin)
+        _mick_cpu_load () {
+            local load
+            load=$(LANG=C sysctl -n vm.loadavg | awk '{print $2}')
+            echo "$load"
+        }
+esac
+
+function _mick_host() {
+  #TODO: deal with su/sudo
+  #      https://github.com/nojhan/liquidprompt/blob/master/liquidprompt
+  if [[ -n "$SSH_CLIENT$SSH2_CLIENT$SSH_TTY" ]] ; then
+    # we are in a SSH session, so show the host
+    # TODO: color the ssh user a bright color to stand out
+    echo "%{$fg[green]%}[%{$terminfo[bold]$fg[blue]%}%n@%m%{$fg[green]%}]%{$reset_color%}-"
+  else
+    echo ""
+  fi
+}
+
 # for vim prompt
-function vim_pwd() {
+function _mick_vim_pwd() {
   # similar function to this
   # echo $(pwd | perl -pe "s|^$HOME|~|g; s|/([^/])[^/]*(?=/)|/\$1|g")
   # TODO: Figure out how wide the terminal is
@@ -51,6 +98,21 @@ function load_average() {
   echo "${load_color}${load_avg_hundred} %{$reset_color%}"
 }
 
+function load_average_x() {
+  local load="$(_mick_cpu_load | sed 's/\.//g;s/^0*//g' )"
+  let "load=${load:-0}/$_MICK_CPUNUM"
+  local load_color_x="%{$fg[green]%}"
+
+  if [[ ${load} -gt 66 ]]; then
+    load_color_x="%{$fg[red]%}"
+  else
+    if [[ ${load} > 33 ]]; then
+      load_color_x="%{$fg[yellow]%}"
+    fi
+  fi
+  echo "${load_color_x}${load} %{$reset_color%}"
+}
+
 
 local rvm_ruby=''
 if which rvm-prompt &> /dev/null; then
@@ -62,13 +124,14 @@ else
 fi
 local git_branch='$(git_prompt_info)%{$reset_color%}'
 
-local load_avg='$(load_average)'
-local user_host='%{$fg[green]%}[%{$terminfo[bold]$fg[blue]%}%n@%m%{$fg[green]%}]%{$reset_color%}'
-local current_dir='%{$fg[green]%}[%{$terminfo[bold]$fg[magenta]%}$(vim_pwd)%{$fg[green]%}]%{$reset_color%}'
+local load_avg='$(load_average_x)'
+#local user_host='%{$fg[green]%}[%{$terminfo[bold]$fg[blue]%}%n@%m%{$fg[green]%}]%{$reset_color%}'
+local user_host='$(_mick_host)'
+local current_dir='%{$fg[green]%}[%{$terminfo[bold]$fg[magenta]%}$(_mick_vim_pwd)%{$fg[green]%}]%{$reset_color%}'
 local current_time='%{$fg[green]%}[%{$terminfo[bold]$fg[green]%}%T%{$fg[green]%}]%{$reset_color%}'
 
 
-PROMPT="${load_avg}${user_host}-${current_dir}-${current_time}${git_branch}
+PROMPT="${load_avg}${user_host}${current_dir}-${current_time}${git_branch}
 %B%{$fg[green]%}#:>%b%{$reset_color%} "
 RPS1="${return_code}"
 
