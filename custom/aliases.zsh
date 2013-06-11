@@ -35,7 +35,7 @@ alias flush="sudo killall -HUP mDNSResponder"
 alias tmlog="syslog -F '$Time $Message' -k Sender com.apple.backupd -k Time ge -30m | tail -n 15"
 
 # list TODO/FIX lines from the current project
-alias todos="ack -n --nogroup '(TODO|FIX(ME)?):'"
+alias todos="ack -n -r --nogroup '(TODO|FIX(ME)?):'"
 
 # http://brettterpstra.com/2013/03/14/more-command-line-handiness/
 alias psgrep="ps -Aco pid,comm | sed 's/^ *//'| sed 's/:/ /'|grep -iE"
