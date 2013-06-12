@@ -37,6 +37,9 @@ alias tmlog="syslog -F '$Time $Message' -k Sender com.apple.backupd -k Time ge -
 # list TODO/FIX lines from the current project
 alias todos="ack -n -r --nogroup '(TODO|FIX(ME)?):'"
 
+# create a Taskpaper todo file in the current folder
+alias tp='touch todo.taskpaper && open -a "Taskpaper" todo.taskpaper'
+
 # http://brettterpstra.com/2013/03/14/more-command-line-handiness/
 alias psgrep="ps -Aco pid,comm | sed 's/^ *//'| sed 's/:/ /'|grep -iE"
 #---
