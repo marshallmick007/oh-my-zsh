@@ -31,7 +31,7 @@ if [ ! -d "${HOME}/tmp" ]; then
 fi
 
 if [ ! -d "${DROPBOXDIR}" ]; then
-  BACKUPDIR=DEFAULTBACKUPDIR
+  BACKUPDIR="${DEFAULTBACKUPDIR}"
   if [ ! -d "${BACKUPDIR}" ]; then
     mkdir ${BACKUPDIR}
     chmod 700 ${BACKUPDIR}

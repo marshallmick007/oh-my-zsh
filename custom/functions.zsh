@@ -73,6 +73,12 @@ function resizeimg()
   fi
 }
 
+function gonginx() 
+{
+  pushd
+  cd /usr/local/etc/nginx
+}
+
 #
 # Pow Scripts
 #
