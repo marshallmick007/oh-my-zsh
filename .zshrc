@@ -60,9 +60,11 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # zmv!!! $ zmv '(*).txt' '${1}.bak'
 autoload zmv
 
-echo "installing rbenv"
-export RBENV_ROOT="${HOME}/.rbenv"
-eval "$(rbenv init -)"
+if [[ -f $(which rbenv) ]]; then
+  echo "installing rbenv"
+  export RBENV_ROOT="${HOME}/.rbenv"
+  eval "$(rbenv init -)"
+fi
 
 export EDITOR="${ZSH}/custom/plugins/editor/editor.plugin.zsh"
 export VISUAL="nano"
