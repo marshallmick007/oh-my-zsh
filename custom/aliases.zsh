@@ -1,10 +1,10 @@
-alias htop="htop --sort-key PERCENT_CPU"
+alias htop="sudo htop --sort-key PERCENT_CPU"
 alias df="df -h"
 alias du="du -h"
 alias lh="ls -lh .[a-zA-Z0-9]*"
 alias ll="ls -lh"
 alias lla="ls -lha"
-alias ls="ls -lFh --color"
+alias ls="ls -lFhG"
 alias lsd="ls -ld"
 alias lsold="ls -At1 && echo '------Oldest--'"
 alias lsnew='ls -Art1 && echo "------Newest--"'

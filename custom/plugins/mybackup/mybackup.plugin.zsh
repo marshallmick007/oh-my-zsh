@@ -28,8 +28,6 @@ function backupconfigs()
     cp ~/.powconfig ${BPATH}/powconfig
     echo "Backing up .gdbinit"
     cp ~/.gdbinit ${BPATH}/gdbinit
-    echo "Backing up .rvmrc file to ${BPATH}/rvmrc"
-    cp ~/.rvmrc ${BPATH}/rvmrc
     echo "Backing up Ruby files..."
     cp ~/.irbrc ${BPATH}/irbrc
     cp ~/.pryrc ${BPATH}/pryrc
@@ -43,8 +41,11 @@ function backupconfigs()
     cp ~/.gvimrc.local ${BPATH}/gvimrc.local
     echo "Backing up MongoDb"
     cp ~/.mongodb/mongod.conf ${BPATH}/mongod.conf
+    echo "Backing up Pianobar (.config/paniobar/config)"
+    cp ~/.config/pianobar/config ${BPATH}/pianobarconfig
     echo "Backing up LaunchAgents"
     cp ~/Library/LaunchAgents/org.mickelson.* ${BPATH}
+    cp ~/Library/LaunchAgents/local.* ${BPATH}
     echo -e "${fg[magenta]}Dumping dot files to github dropbox. ${BACKUPGIT}${reset_color}"
     cp -Rv ${BPATH}/* ${BACKUPGIT}
     echo -e "${fg[red]}Don't forget to git commit the files in ${BACKUPGIT}${reset_color}"
@@ -95,24 +96,24 @@ function backupnginx()
   if [ $OS = "Darwin" ]; then
     FILESROOT="/usr/local/etc"
   fi
-  BPATH="${BACKUPDIR}/nginx"
-  mkdir -p ${BPATH}
+  BPATH2="${BACKUPDIR}/nginx"
+  mkdir -p ${BPATH2}
 
-  if [ -d "${BPATH}" ]; then
-    echo -e "${fg[magenta]}Backing up nginx to ${BPATH}${reset_color}"
-    cp -Rv ${FILESROOT}/nginx/* ${BPATH}
+  if [ -d "${BPATH2}" ]; then
+    echo -e "${fg[magenta]}Backing up nginx to ${BPATH2}${reset_color}"
+    cp -Rv ${FILESROOT}/nginx/* ${BPATH2}
   else
-    echo "Backup directory ${BPATH} does not exist!"
+    echo "Backup directory ${BPATH2} does not exist!"
   fi
 
-  BPATH="${BACKUPDIR}/php"
-  mkdir -p ${BPATH}
+  BPATH2="${BACKUPDIR}/php"
+  mkdir -p ${BPATH2}
 
-  if [ -d "${BPATH}" ]; then
-    echo -e "${fg[magenta]}Backing up php to ${BPATH}${reset_color}"
-    cp -Rv ${FILESROOT}/php/* ${BPATH}
+  if [ -d "${BPATH2}" ]; then
+    echo -e "${fg[magenta]}Backing up php to ${BPATH2}${reset_color}"
+    cp -Rv ${FILESROOT}/php/* ${BPATH2}
   else
-    echo "Backup directory ${BPATH} does not exist!"
+    echo "Backup directory ${BPATH2} does not exist!"
   fi
 }
 
@@ -126,6 +127,6 @@ function backup()
   backupscripts
   backupconfigs
   backupnginx
-  backup1pass
+  #backup1pass
 }
 
