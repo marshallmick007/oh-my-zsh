@@ -1,3 +1,6 @@
 [submodule "custom/plugins/ansiweather"]
 	path = custom/plugins/ansiweather
 	url = git@github.com:fcambus/ansiweather.git
+[submodule "custom/plugins/osx-dev"]
+	path = custom/plugins/osx-dev
+	url = git@github.com:marshallmick007/osx-dev-zsh-plugin.git
