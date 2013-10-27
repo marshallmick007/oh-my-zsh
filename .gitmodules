@@ -1,0 +1,3 @@
+[submodule "custom/plugins/ansiweather"]
+	path = custom/plugins/ansiweather
+	url = git@github.com:fcambus/ansiweather.git
