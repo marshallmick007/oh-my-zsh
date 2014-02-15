@@ -42,7 +42,7 @@ function _mick_host() {
   if [[ -n "$SSH_CLIENT$SSH2_CLIENT$SSH_TTY" ]] ; then
     # we are in a SSH session, so show the host
     # TODO: color the ssh user a bright color to stand out
-    echo "%{$fg[green]%}[%{$terminfo[bold]$fg[blue]%}%n@%m%{$fg[green]%}]%{$reset_color%}-"
+    echo "%{$fg[green]%}[%{$terminfo[bold]$fg[cyan]%}%n@%m%{$fg[green]%}]%{$reset_color%}-"
   else
     echo ""
   fi
@@ -113,6 +113,7 @@ function load_average_x() {
   echo "${load_color_x}${load} %{$reset_color%}"
 }
 
+#local
 
 local rvm_ruby=''
 if which rvm-prompt &> /dev/null; then
@@ -127,12 +128,12 @@ local git_branch='$(git_prompt_info)%{$reset_color%}'
 local load_avg='$(load_average_x)'
 #local user_host='%{$fg[green]%}[%{$terminfo[bold]$fg[blue]%}%n@%m%{$fg[green]%}]%{$reset_color%}'
 local user_host='$(_mick_host)'
-local current_dir='%{$fg[green]%}[%{$terminfo[bold]$fg[magenta]%}$(_mick_vim_pwd)%{$fg[green]%}]%{$reset_color%}'
-local current_time='%{$fg[green]%}[%{$terminfo[bold]$fg[green]%}%T%{$fg[green]%}]%{$reset_color%}'
+local current_dir='%{$fg[green]%}[$fg[magenta]%}$(_mick_vim_pwd)%{$reset_color%}%{$fg[green]%}]%{$reset_color%}'
+local current_time='%{$fg[green]%}[%{$fg[cyan]%}%T%{$reset_color%}%{$fg[green]%}]%{$reset_color%}'
 
 
 PROMPT="${load_avg}${user_host}${current_dir}-${current_time}${git_branch}
-%B%{$fg[green]%}#:>%b%{$reset_color%} "
+%b%{$fg[green]%}#:>%b%{$reset_color%} "
 RPS1="${return_code}"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="-%{$fg[green]%}[%{$fg[yellow]%}± "

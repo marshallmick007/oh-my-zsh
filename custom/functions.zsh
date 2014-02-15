@@ -119,5 +119,13 @@ function clean_downloads()
   ~/bin/sweep.rb ~/Downloads
 }
 
+function show_mas_applications()
+{
+  find /Applications \
+    -path '*Contents/_MASReceipt/receipt' \
+    -maxdepth 4 -print |\
+    sed 's#.app/Contents/_MASReceipt/receipt#.app#g;'
+}
+
 
 
