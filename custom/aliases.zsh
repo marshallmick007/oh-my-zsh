@@ -1,10 +1,16 @@
+local OS=Linux
+case $(uname) in
+    FreeBSD) OS=FreeBSD ;;
+    Darwin) OS=Darwin ;;
+    *) OS=Linux ;;
+esac
+
 alias htop="sudo htop --sort-key PERCENT_CPU"
 alias df="df -h"
 alias du="du -h"
 alias lh="ls -lh .[a-zA-Z0-9]*"
 alias ll="ls -lh"
 alias lla="ls -lha"
-alias ls="ls -lFh --color"
 alias lsd="ls -ld"
 alias lsold="ls -At1 && echo '------Oldest--'"
 alias lsnew='ls -Art1 && echo "------Newest--"'
@@ -14,36 +20,44 @@ alias mv="mv -i"
 #alias pcd="cd -"
 alias ps="ps aux"
 alias rm="rm -i"
-alias ff="/Applications/Firefox.app/Contents/MacOS/firefox-bin"
 alias pandora="pianobar"
 alias hsplit="split_tab"
 alias vsplit="split_tab"
 alias weather="ansiweather"
 
-#---
-# begin http://brettterpstra.com/2013/03/31/a-few-more-of-my-favorite-shell-aliases/
+if [[ "$OS" == "Darwin" ]]; then
+  alias ls="ls -lFhG"
+  alias ff="/Applications/Firefox.app/Contents/MacOS/firefox-bin"
 
-# copy the working directory path
-alias cpwd='pwd|tr -d "\n"|pbcopy'
+  #---
+  # begin http://brettterpstra.com/2013/03/31/a-few-more-of-my-favorite-shell-aliases/
 
-# DNS (with update thanks to @blanco)
-alias flush="sudo killall -HUP mDNSResponder"
+  # copy the working directory path
+  alias cpwd='pwd|tr -d "\n"|pbcopy'
 
-# time machine log
-#alias tmlog="syslog -F '\$Time \$Message' -k Sender com.apple.backupd-auto -k Time ge -30m | tail -n 1"
-alias tmlog="syslog -F '$Time $Message' -k Sender com.apple.backupd -k Time ge -30m | tail -n 15"
+  # DNS (with update thanks to @blanco)
+  alias flush="sudo killall -HUP mDNSResponder"
 
-# list TODO/FIX lines from the current project
-alias todos="ack -n -r --nogroup '(TODO|FIX(ME)?):'"
+  # time machine log
+  #alias tmlog="syslog -F '\$Time \$Message' -k Sender com.apple.backupd-auto -k Time ge -30m | tail -n 1"
+  alias tmlog="syslog -F '$Time $Message' -k Sender com.apple.backupd -k Time ge -30m | tail -n 15"
 
-# create a Taskpaper todo file in the current folder
-alias tp='touch todo.taskpaper && open -a "Taskpaper" todo.taskpaper'
+  # create a Taskpaper todo file in the current folder
+  alias tp='touch todo.taskpaper && open -a "Taskpaper" todo.taskpaper'
+  #---
+
+  alias f='open -a Finder '
+
+else
+  alias ls="ls -lFh --color"
+fi
 
 # http://brettterpstra.com/2013/03/14/more-command-line-handiness/
 alias psgrep="ps -Aco pid,comm | sed 's/^ *//'| sed 's/:/ /'|grep -iE"
-#---
+# list TODO/FIX lines from the current project
+alias todos="ack -n -r --nogroup '(TODO|FIX(ME)?):'"
 
-alias f='open -a Finder '
+
 
 alias guard='bundle exec guard start -i'
 

@@ -52,13 +52,17 @@ PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:/usr/local/sbin:$PATH;
 # Android SDK
 PATH="${HOME}/Applications/Android Developer Toolkit/sdk/platform-tools:$PATH"
 
-# better LS colors
-export LS_COLORS="no=00:fi=00:di=01;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;00:cd=40;33;00:or=00;05;37;41:mi=00;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:"
-#export LS_COLORS="di=34;40:ln=35;40:so=32;40:pi=33;40:ex=31;40:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:"
-#export LSCOLORS="exfxcxdxbxegedabagacad"
+# From
+# http://misc.twam.info/lscolors/
+
+# For BSD (osx)
+export LSCOLORS='cxfxFxDxGxDxDxhbhdacEc'
+
+# for linux
+export LS_COLORS="di=32:ln=35:so=01;35:pi=01;33:ex=01;36:bd=01;33:cd=01;33:su=37;41:sg=37;43:tw=00;42:ow=01;34;42:"
 
 # see http://osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/
-export LSCOLORS='cxgxhxhxbxhxhxbabacaca'
+#export LSCOLORS='cxgxhxhxbxhxhxbabacaca'
 
 #fix hard to read autocompletion colors
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
