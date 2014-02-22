@@ -75,6 +75,8 @@ fi
 export EDITOR="${ZSH}/custom/plugins/editor/editor.plugin.zsh"
 export VISUAL="nano"
 export PAGER=less
+alias ls="ls -lFhG"
+
 
 # LESS termcap
 export LESS_TERMCAP_mb=$'\E[01;35m'
@@ -88,4 +90,4 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 export EDITOR="mvim"
 
 ### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+#export PATH="/usr/local/heroku/bin:$PATH"
