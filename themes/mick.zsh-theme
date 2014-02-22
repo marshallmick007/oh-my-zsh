@@ -42,7 +42,7 @@ function _mick_host() {
   if [[ -n "$SSH_CLIENT$SSH2_CLIENT$SSH_TTY" ]] ; then
     # we are in a SSH session, so show the host
     # TODO: color the ssh user a bright color to stand out
-    echo "%{$fg[green]%}[%{$terminfo[bold]$fg[cyan]%}%n@%m%%{$reset_color%}%{$fg[green]%}]%{$reset_color%}-"
+    echo "%{$fg[green]%}[%{$terminfo[bold]$fg[cyan]%}%n@%m%{$reset_color%}%{$fg[green]%}]%{$reset_color%}-"
   else
     echo ""
   fi
