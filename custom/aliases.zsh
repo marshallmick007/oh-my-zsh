@@ -28,7 +28,7 @@ alias weather="ansiweather"
 if [[ "$OS" == "Darwin" ]]; then
   alias ls="ls -lFhG"
   alias ff="/Applications/Firefox.app/Contents/MacOS/firefox-bin"
-
+  alias vim=mvim
   #---
   # begin http://brettterpstra.com/2013/03/31/a-few-more-of-my-favorite-shell-aliases/
 
