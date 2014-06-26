@@ -46,6 +46,8 @@ function backupconfigs()
     echo "Backing up LaunchAgents"
     cp ~/Library/LaunchAgents/org.mickelson.* ${BPATH}
     cp ~/Library/LaunchAgents/local.* ${BPATH}
+    echo "Backing Up XCode themes"
+    cp -v ~/Library/Developer/Xcode/UserData/FontAndColorThemes/* ${BPATH}/xcode/themes
     echo -e "${fg[magenta]}Dumping dot files to github dropbox. ${BACKUPGIT}${reset_color}"
     cp -Rv ${BPATH}/* ${BACKUPGIT}
     echo -e "${fg[red]}Don't forget to git commit the files in ${BACKUPGIT}${reset_color}"
@@ -81,11 +83,15 @@ function backupssh()
 
 function backup1pass()
 {
+  kbase=`which keybase`
+  onepassfile="/Users/marshall/Documents/1Password.agilekeychain"
   echo -e "${fg[magenta]}Backing up 1Password keychain${BPATH}${reset_color}"
-  if [ -f ~/bin/backup1pass.py ]; then
-    ~/bin/backup1pass.py
+  if [ -x "${kbase}" ]; then
+    echo -e "${fg[red]}Need to find out how to encrypt a folder.${reset_color}"
+    echo -e "See: https://keybase.io/docs/command_line"
+    #keybase encrypt marshall ${onepassfile} -o "${BACKUPDIR}/1Password.agilekeychain.asc"
   else
-    echo "Unable to backup 1Password"
+    echo "Unable to backup 1Password. You need to install 'keybase'"
   fi
 }
 

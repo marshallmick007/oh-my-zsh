@@ -79,41 +79,6 @@ function gonginx()
   cd /usr/local/etc/nginx
 }
 
-#
-# Pow Scripts
-#
-function pow_stop()
-{
-  echo "Shutting down Pow..."
-  launchctl unload "$HOME/Library/LaunchAgents/cx.pow.powd.plist" 2>/dev/null || true
-}
-
-function pow_start()
-{
-  echo "Starting Pow..."
-  launchctl load -Fw "$HOME/Library/LaunchAgents/cx.pow.powd.plist" 2>/dev/null
-}
-
-function restart_pow()
-{
-  echo "*** Stopping the Pow server..."
-  launchctl unload "$HOME/Library/LaunchAgents/cx.pow.powd.plist" 2>/dev/null || true
-  echo "*** Starting the Pow server..."
-  launchctl load "$HOME/Library/LaunchAgents/cx.pow.powd.plist" 2>/dev/null
-  echo "Done"
-}
-
-function installpow()
-{
-  curl get.pow.cx | sh
-}
-
-function uninstallpow()
-{
-  curl get.pow.cx/uninstall.sh | sh
-}
-
-
 function clean_downloads()
 {
   ~/bin/sweep.rb ~/Downloads
@@ -127,5 +92,9 @@ function show_mas_applications()
     sed 's#.app/Contents/_MASReceipt/receipt#.app#g;'
 }
 
+function nzbup()
+{
+  mv -v ~/Downloads/*.nzb ~/Downloads/autonzb
+}
 
 
