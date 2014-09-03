@@ -4,8 +4,6 @@ function backupconfigs()
   BPATH="${BACKUPDIR}/configs"
   echo -e "${fg[magenta]}Backing up config files to ${BPATH}${reset_color}"
   if [ -d "${BPATH}" ]; then
-    echo "Backing up .bashrc to ${BPATH}/bashrc"
-    cp ~/.bashrc ${BPATH}/bashrc
     echo "Backing up .zshrc to ${BPATH}/zshrc"
     cp ~/.zshrc ${BPATH}/zshrc
     echo "Backing up .gitconfig to ${BPATH}/gitconfig"
@@ -18,27 +16,12 @@ function backupconfigs()
     cp ~/.profile ${BPATH}/profile
     echo "Backing up hosts file to ${BPATH}/hosts"
     cp /etc/hosts ${BPATH}/hosts
-    echo "Backing up httpd.conf file to ${BPATH}/httpd.conf"
-    cp /Applications/MAMP/conf/apache/httpd.conf ${BPATH}/httpd.conf
-    echo "Backing up httpd-vhosts.conf file to ${BPATH}/httpd-vhosts.conf"
-    cp /Applications/MAMP/conf/apache/httpd-vhosts.conf ${BPATH}/httpd-vhosts.conf
-    echo "Backing up zzz_pow.conf file to ${BPATH}/zzz_pow.conf"
-    cp /Applications/MAMP/conf/apache/other/zzz_pow.conf ${BPATH}/zzz_pow.conf
-    echo "Backing up powconfig configuration"
-    cp ~/.powconfig ${BPATH}/powconfig
     echo "Backing up .gdbinit"
     cp ~/.gdbinit ${BPATH}/gdbinit
     echo "Backing up Ruby files..."
     cp ~/.irbrc ${BPATH}/irbrc
     cp ~/.pryrc ${BPATH}/pryrc
     cp ~/.aprc ${BPATH}/aprc
-    echo "Backing up .osx"
-    cp ~/.osx ${BPATH}/_osx
-    echo "Backing up VIM"
-    cp ~/.vim/vimrc ${BPATH}/vim/vimrc
-    cp ~/.vim/gvimrc ${BPATH}/vim/gvimrc
-    cp ~/.vimrc.local ${BPATH}/vimrc.local
-    cp ~/.gvimrc.local ${BPATH}/gvimrc.local
     echo "Backing up MongoDb"
     cp ~/.mongodb/mongod.conf ${BPATH}/mongod.conf
     echo "Backing up Pianobar (.config/paniobar/config)"
@@ -46,6 +29,8 @@ function backupconfigs()
     echo "Backing up LaunchAgents"
     cp ~/Library/LaunchAgents/org.mickelson.* ${BPATH}
     cp ~/Library/LaunchAgents/local.* ${BPATH}
+    echo "Backing up php-fpm"
+    cp /usr/local/etc/php/5.4/php-fpm.conf ${BPATH}
     echo "Backing Up XCode themes"
     cp -v ~/Library/Developer/Xcode/UserData/FontAndColorThemes/* ${BPATH}/xcode/themes
     echo -e "${fg[magenta]}Dumping dot files to github dropbox. ${BACKUPGIT}${reset_color}"
