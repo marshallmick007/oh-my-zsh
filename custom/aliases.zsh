@@ -40,7 +40,9 @@ if [[ "$OS" == "Darwin" ]]; then
 
   # time machine log
   #alias tmlog="syslog -F '\$Time \$Message' -k Sender com.apple.backupd-auto -k Time ge -30m | tail -n 1"
-  alias tmlog="syslog -F '$Time $Message' -k Sender com.apple.backupd -k Time ge -30m | tail -n 15"
+  alias tmlog="syslog -F '$Time $Message' -k Sender com.apple.backupd -k Time ge -30m | tail -n 10"
+
+  alias lastbackup="timedog -d 4 -l"
 
   # create a Taskpaper todo file in the current folder
   alias tp='touch todo.taskpaper && open -a "Taskpaper" todo.taskpaper'
