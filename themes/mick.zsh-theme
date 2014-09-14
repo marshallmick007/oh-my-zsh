@@ -129,7 +129,7 @@ local load_avg='$(load_average_x)'
 #local user_host='%{$fg[green]%}[%{$terminfo[bold]$fg[blue]%}%n@%m%{$fg[green]%}]%{$reset_color%}'
 local user_host='$(_mick_host)'
 local current_dir='%{$fg[green]%}[$fg[magenta]%}$(_mick_vim_pwd)%{$reset_color%}%{$fg[green]%}]%{$reset_color%}'
-local current_time='%{$fg[green]%}[%{$fg[cyan]%}%T%{$reset_color%}%{$fg[green]%}]%{$reset_color%}'
+local current_time='%{$fg[green]%}[%{$fg[blue]%}%T%{$reset_color%}%{$fg[green]%}]%{$reset_color%}'
 
 
 PROMPT="${load_avg}${user_host}${current_dir}-${current_time}${git_branch}
