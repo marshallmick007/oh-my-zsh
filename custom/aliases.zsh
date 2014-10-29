@@ -70,6 +70,9 @@ alias WORD="ruby -e 'printf(\"0x%04X\n\", ARGV[0])'"
 
 alias prettyjson="python -mjson.tool"
 
+# https://github.com/marshallmick007/gitcheck
+alias gitcheck="python /Library/Python/2.7/site-packages/gitcheck.py -v"
+
 
 # Get readable list of network IPs
 #alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
