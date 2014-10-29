@@ -80,6 +80,7 @@ alias flush="dscacheutil -flushcache" # Flush DNS cache
 alias nginx.start='sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
 alias nginx.stop='sudo launchctl unload -w /Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
 alias nginx.restart='nginx.stop && nginx.start'
+alias nginx.reload='sudo kill -HUP $( cat /usr/local/var/run/nginx.pid )'
 alias php-fpm.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php54.plist"
 alias php-fpm.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.php54.plist"
 alias php-fpm.restart='php-fpm.stop && php-fpm.start'
