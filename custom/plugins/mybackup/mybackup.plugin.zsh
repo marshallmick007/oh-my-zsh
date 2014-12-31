@@ -35,6 +35,9 @@ function backupconfigs()
     cp -v ~/Library/Developer/Xcode/UserData/FontAndColorThemes/* ${BPATH}/xcode/themes
     echo -e "${fg[magenta]}Dumping dot files to github dropbox. ${BACKUPGIT}${reset_color}"
     cp -Rv ${BPATH}/* ${BACKUPGIT}
+    echo -e "Backing up dnsmasq settings"
+    cp /usr/local/etc/dnsmasq.conf ${BPATH}/dnsmasq.conf
+    cp /usr/local/etc/resolv.dnsmasq.conf ${BPATH}/resolv.dnsmasq.conf
     echo -e "${fg[red]}Don't forget to git commit the files in ${BACKUPGIT}${reset_color}"
   else
     echo "Backup directory ${BPATH} does not exist!"
