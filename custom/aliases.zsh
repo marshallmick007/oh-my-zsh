@@ -61,7 +61,7 @@ alias todos="ack -n -r --nogroup '(TODO|FIX(ME)?):'"
 
 
 
-alias guard='bundle exec guard start -i'
+#alias guard='bundle exec guard start -i'
 
 alias HEX="ruby -e 'printf(\"0x%X\n\", ARGV[0])'"
 alias DEC="ruby -e 'printf(\"%d\n\", ARGV[0])'"
