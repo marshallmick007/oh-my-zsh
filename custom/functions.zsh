@@ -5,6 +5,14 @@ function historyhawk()
   history|awk '{a[$2]++}END{for(i in a){printf"%5d\t%s\n",a[i],i}}'|sort -nr|head;
 }
 
+# finds all node_modules within the current folder
+function find_node_modules()
+{
+  # maxdepth of 4 is used so it can run in the `work`
+  # folder and find all node_modules
+  find ~/work -type d -regex ".*/node_modules$" -maxdepth 4
+}
+
 # kinda like netstat
 function ls-net()
 {
