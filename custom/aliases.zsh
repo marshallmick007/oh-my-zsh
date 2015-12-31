@@ -5,6 +5,10 @@ case $(uname) in
     *) OS=Linux ;;
 esac
 
+if [[ "$OS" == "Linux" ]]; then
+  alias ls="ls -lFh --color=auto"
+fi
+
 alias htop="sudo htop --sort-key PERCENT_CPU"
 alias df="df -h"
 alias du="du -h"
@@ -49,9 +53,6 @@ if [[ "$OS" == "Darwin" ]]; then
   #---
 
   alias f='open -a Finder '
-
-else
-  alias ls="ls -lFh --color"
 fi
 
 # http://brettterpstra.com/2013/03/14/more-command-line-handiness/
