@@ -7,9 +7,12 @@ esac
 
 if [[ "$OS" == "Linux" ]]; then
   alias ls="ls -lFh --color=auto"
+  alias large_files="find . -type f -size +10000k -exec ls -lh {} \; | awk '{print \$5 \": \" \$9}'"
+
+  alias large_folders="command du -a .  | sort -n -r | head -n 10"
 fi
 
-alias htop="sudo htop --sort-key PERCENT_CPU"
+alias htop="sudo htop --sort-key PERCENT_CPU -d 30"
 alias df="df -h"
 alias du="du -h"
 alias lh="ls -lh .[a-zA-Z0-9]*"
@@ -28,6 +31,7 @@ alias pandora="pianobar"
 alias hsplit="split_tab"
 alias vsplit="split_tab"
 alias weather="ansiweather"
+
 
 if [[ "$OS" == "Darwin" ]]; then
   alias ls="ls -lFhG"

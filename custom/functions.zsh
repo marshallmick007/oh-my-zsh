@@ -105,6 +105,12 @@ function nzbup()
   mv -v ~/Downloads/*.nzb ~/Downloads/autonzb
 }
 
+function killpulse()
+{
+  killall pulseaudio
+  rm -Rf ~/.config/pulse
+}
+
 # From http://brettterpstra.com/2015/01/05/sizeup-tidy-filesize-information-in-terminal/
 
 __sizeup_build_query () {
@@ -149,11 +155,13 @@ sizeup () {
   done
   shift $((OPTIND-1))
 
-  local cmd="find . -type f ${depth}$(__sizeup_build_query $@)"
+  local cmd="find . $depth -type f $(__sizeup_build_query $@)"
   local counter=0
   while read -r file; do
     counter=$(( $counter+1 ))
-    size=$(stat -f '%z' "$file")
+    # Darwin
+    #size=$(stat -f '%z' "$file")
+    size=$(stat -c '%s' "$file")
     totalb=$(( $totalb+$size ))
     >&2 echo -ne $'\E[K\e[1;32m'"${counter}:"$'\e[1;31m'" $file "$'\e[0m'"("$'\e[1;31m'$size$'\e[0m'")"$'\r'
     # >&2 echo -n "$(__sizeup_humanize $totalb): $file ($size)"

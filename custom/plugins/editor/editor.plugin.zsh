@@ -6,15 +6,15 @@
 
 case "$1" in
 	*_EDITMSG|*MERGE_MSG|*_TAGMSG )
-		/usr/local/bin/mvim "$1"
+		/usr/bin/vim "$1"
 		;;
 	*.md )
-		/usr/local/bin/mvim "$1"
+		/usr/bin/vim "$1"
 		;;
 	*.txt )
-		/usr/local/bin/mvim "$1"
+		/usr/bin/vim "$1"
 		;;
 	* )
-		/usr/local/bin/mvim "$1"
+		/usr/bin/vim "$1"
 		;;
 esac
