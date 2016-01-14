@@ -10,6 +10,8 @@ if [[ "$OS" == "Linux" ]]; then
   alias large_files="find . -type f -size +10000k -exec ls -lh {} \; | awk '{print \$5 \": \" \$9}'"
 
   alias large_folders="command du -a .  | sort -n -r | head -n 10"
+  alias flip_screen="$HOME\bin\rotate.sh toggle"
+  alias reset_screen="$HOME\bin\rotate.sh reset"
 fi
 
 alias htop="sudo htop --sort-key PERCENT_CPU -d 30"
