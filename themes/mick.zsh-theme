@@ -1,6 +1,19 @@
 # ZSH Theme - Preview: http://gyazo.com/8becc8a7ed5ab54a0262a470555c3eed.png
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
+ZSH_THEME_GIT_PROMPT_PREFIX="("
+ZSH_THEME_GIT_PROMPT_SUFFIX=")"
+ZSH_THEME_GIT_PROMPT_SEPARATOR="|"
+ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg[yellow]%}"
+ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[red]%}%{●%G%}"
+ZSH_THEME_GIT_PROMPT_CONFLICTS="%{$fg[red]%}%{×%G%}"
+ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[blue]%}%{+%G%}"
+ZSH_THEME_GIT_PROMPT_BEHIND="%{↓%G%}"
+ZSH_THEME_GIT_PROMPT_AHEAD="%{↑%G%}"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{…%G%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}%{=%G%}"
+
+
 # adapted from https://github.com/nojhan/liquidprompt/blob/master/liquidprompt
 
 # TODO: try to only query for MICK_OS and _MICK_CPUNUM once, when the shell starts
@@ -36,6 +49,10 @@ case "$MICK_OS" in
         }
 esac
 
+functon _fn_exists() {
+  whence -w $1 >/dev/nul
+}
+
 function _mick_host() {
   #TODO: deal with su/sudo
   #      https://github.com/nojhan/liquidprompt/blob/master/liquidprompt
@@ -58,7 +75,8 @@ function _mick_vim_pwd() {
   local _vim_dirname="${PWD/#$HOME/~}"
 
   # account for the added overhead of the git prompt
-  if [ ${#$(git_prompt_info)} -gt 0 ]; then
+  #if [ ${#$(git_branch)} -gt 0 ]; then
+  if [ -n ${git_branch} ]; then
     _tmpdirmaxlen=32
   fi
   local _dir=${PWD##*/}
@@ -123,7 +141,13 @@ else
     rvm_ruby='%{$fg[red]%}‹$(rbenv version | sed -e "s/ (set.*$//")›%{$reset_color%}'
   fi
 fi
-local git_branch='$(git_prompt_info)%{$reset_color%}'
+git_branch=''
+
+if which git_super_status >/dev/null; then
+  git_branch='$(git_super_status)%{$reset_color%}'
+else
+  git_branch='$(git_prompt_info)%{$reset_color%}'
+fi
 
 local load_avg='$(load_average_x)'
 #local user_host='%{$fg[green]%}[%{$terminfo[bold]$fg[blue]%}%n@%m%{$fg[green]%}]%{$reset_color%}'

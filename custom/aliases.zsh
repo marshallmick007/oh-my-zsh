@@ -12,6 +12,8 @@ if [[ "$OS" == "Linux" ]]; then
   alias large_folders="command du -a .  | sort -n -r | head -n 10"
   alias flip_screen="$HOME\bin\rotate.sh toggle"
   alias reset_screen="$HOME\bin\rotate.sh reset"
+  alias pbcopy='xclip -selection clipboard'
+  alias pbpaste='xclip -selection clipboard -o'
 fi
 
 alias htop="sudo htop --sort-key PERCENT_CPU -d 30"
@@ -84,6 +86,8 @@ alias gitcheck="python /Library/Python/2.7/site-packages/gitcheck.py -v"
 # Get readable list of network IPs
 #alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 alias myip="jsonip.rb"
+alias lsip="lsip"
+
 alias flush="dscacheutil -flushcache" # Flush DNS cache
 
 # via https://gist.githubusercontent.com/frdmn/7853158/raw/bash_aliases

@@ -4,3 +4,6 @@
 [submodule "custom/plugins/osx-dev"]
 	path = custom/plugins/osx-dev
 	url = git@github.com:marshallmick007/osx-dev-zsh-plugin.git
+[submodule "custom/plugins/zsh-git-prompt"]
+	path = custom/plugins/zsh-git-prompt
+	url = https://github.com/olivierverdier/zsh-git-prompt.git

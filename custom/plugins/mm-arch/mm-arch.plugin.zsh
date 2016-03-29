@@ -12,3 +12,4 @@ find_os_born_date
 # Update pacman
 alias pacup="sudo pacman -Sy"
 alias pacoutdated="pacman -Qu"
+alias pacclean="sudo pacman -Sc"

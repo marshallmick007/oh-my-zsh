@@ -19,6 +19,53 @@ function ls-net()
   lsof -nPi | cut -f 1 -d " "| uniq | tail -n +2
 }
 
+
+# make a backup of a file
+# # https://github.com/grml/grml-etc-core/blob/master/etc/zsh/zshrc
+function bk() 
+{
+  cp -a "$1" "${1}_$-a(date --iso-8601=seconds)"
+}
+
+
+# display a list of supported colors
+function lscolors {
+  ((cols =  $COLUMNS - 4))
+  s=$(printf %${cols}s)
+  for i in {000..$(tput colors)}; do
+    echo -e $i $(tput setaf $i; tput setab $i)${s// /=}$(tput op);
+  done
+}
+
+# get the content type of an http resource
+function htmime {
+  if  [[ -z $1 ]]; then
+    print "USAGE: htmime <URL>"
+    return 1
+  fi
+  mime=$(curl -sIX HEAD $1 | sed -nr "s/Content-Type: (.+)/\1/p")
+  print $mime
+}
+
+
+# get public ip
+function lsip {
+  local api
+  case "$1" in
+        "-4")
+            api="http://v4.ipv6-test.com/api/myip.php"
+            ;;
+        "-6")
+            api="http://v6.ipv6-test.com/api/myip.php"
+            ;;
+        *)
+            api="http://ipv6-test.com/api/myip.php"
+            ;;
+  esac
+  curl -s "$api"
+  echo # Newline.
+ }
+
 # ls archives (inspired by `extract`)
 function lsz() {
   if [ $# -ne 1 ]
