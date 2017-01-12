@@ -1,4 +1,15 @@
 
+function mountiphone()
+{
+  sudo modprobe fuse
+  ifuse /mnt/iphone
+}
+
+function unmountiphone()
+{
+  umount /mnt/iphone
+}
+
 # Cool History Summerizer
 function historyhawk()
 {
@@ -92,7 +103,8 @@ function mkcd() {
 
 function serve()
 {
-  python -m SimpleHTTPServer ${1:-8080}
+  #python -m SimpleHTTPServer ${1:-8080}
+  python -m http.server ${1:-8080}
 }
 
 function ii()  # get current host related info  # kind of works on mac.  different interface.  dynamic-able?

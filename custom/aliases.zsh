@@ -14,6 +14,12 @@ if [[ "$OS" == "Linux" ]]; then
   alias reset_screen="$HOME\bin\rotate.sh reset"
   alias pbcopy='xclip -selection clipboard'
   alias pbpaste='xclip -selection clipboard -o'
+  alias arc='atool'
+  alias musb='mount /mnt/usb'
+  alias umusb='umount /mnt/usb'
+  alias gousb='cd /mnt/usb/movies'
+  alias brc="bundle exec rake console"
+  alias bonesroda="bones create --skeleton roda-basic"
 fi
 
 alias htop="sudo htop --sort-key PERCENT_CPU -d 30"

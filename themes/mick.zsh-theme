@@ -60,6 +60,9 @@ function _mick_host() {
     # we are in a SSH session, so show the host
     # TODO: color the ssh user a bright color to stand out
     echo "%{$fg[green]%}[%{$terminfo[bold]$fg[cyan]%}%n@%m%{$reset_color%}%{$fg[green]%}]%{$reset_color%}-"
+  elif (( EUID == 0 )); then
+    #we are root
+    echo "%{$bg[yellow]%}%{$fg[red]%} root@%m %{$reset_color%} "
   else
     echo ""
   fi
