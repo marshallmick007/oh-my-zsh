@@ -10,6 +10,7 @@ function find_os_born_date() {
 find_os_born_date
 
 # Update pacman
-alias pacup="sudo pacman -Sy"
+alias pacup="checkupdates"
 alias pacoutdated="pacman -Qu"
+alias pacupgrade="sudo pacman -Syu"
 alias pacclean="sudo pacman -Sc"
