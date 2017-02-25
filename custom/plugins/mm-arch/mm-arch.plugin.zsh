@@ -14,3 +14,4 @@ alias pacup="echo 'Use \"packupgrade\" to upgrade or \"checkupdates\" to view ou
 alias pacoutdated="cat /tmp/checkupdates.log"
 alias pacupgrade="sudo pacman -Syu"
 alias pacclean="sudo pacman -Sc"
+alias morewatchers="sudo bash -c 'echo 524288 > /proc/sys/fs/inotify/max_user_watches'"

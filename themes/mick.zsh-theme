@@ -13,6 +13,14 @@ ZSH_THEME_GIT_PROMPT_AHEAD="%{↑%G%}"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{…%G%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}%{=%G%}"
 
+zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
+zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
+zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
+
+zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*' group-name ''
 
 # adapted from https://github.com/nojhan/liquidprompt/blob/master/liquidprompt
 
