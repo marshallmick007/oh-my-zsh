@@ -7,9 +7,10 @@ esac
 
 if [[ "$OS" == "Linux" ]]; then
   alias ls="ls -lFh --color=auto"
-  alias large_files="find . -type f -size +10000k -exec ls -lh {} \; | awk '{print \$5 \": \" \$9}'"
-
-  alias large_folders="command du -a .  | sort -n -r | head -n 10"
+  alias large_files="$HOME/work/ruby/ruby-large-files/ruby-large-files.rb"
+  alias large_folders="$HOME/work/ruby/ruby-large-files/ruby-large-files.rb"
+  #alias large_files="find . -type f -size +10000k -exec ls -lh {} \; | awk '{print \$5 \": \" \$9}'"
+  #alias large_folders="command du -a .  | sort -n -r | head -n 10"
   alias flip_screen="$HOME\bin\rotate.sh toggle"
   alias reset_screen="$HOME\bin\rotate.sh reset"
   alias pbcopy='xclip -selection clipboard'
@@ -17,9 +18,12 @@ if [[ "$OS" == "Linux" ]]; then
   alias arc='atool'
   alias musb='mount /mnt/usb'
   alias umusb='umount /mnt/usb'
-  alias gousb='cd /mnt/usb/movies'
+  alias gousb='cd /mnt/usb/tv'
   alias brc="bundle exec rake console"
   alias bonesroda="bones create --skeleton roda-basic"
+  alias exa="exa -alg --color-scale --time-style=long-iso"
+  alias xa="exa"
+  alias le="exa"
 fi
 
 alias htop="sudo htop --sort-key PERCENT_CPU -d 30"
