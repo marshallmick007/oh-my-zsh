@@ -5,9 +5,9 @@ local BACKUPGIT="${WORKDIR}/dotfiles"   # dotfiles git directory
 local DEFAULTBACKUPDIR="${HOME}/backups"
 
 # Startup Banner
-if [ -e "/usr/bin/uptime" ]; then
-  echo "Uptime: ` /usr/bin/uptime`"
-fi
+#if [ -e "/usr/bin/uptime" ]; then
+#  echo "Uptime: ` /usr/bin/uptime`"
+#fi
 
 #-----------------------------------------------------------
 #@ Make $HOME more comfy

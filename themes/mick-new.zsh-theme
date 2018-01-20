@@ -88,6 +88,8 @@ function _mick_host() {
   fi
 }
 
+# TODO: See https://github.com/bhilburn/powerlevel9k/blob/master/powerlevel9k.zsh-theme#L622
+#
 # for vim prompt
 function _mick_vim_pwd() {
   # similar function to this
@@ -178,10 +180,11 @@ local user_host='$(_mick_host)'
 local current_dir='${DIRCOLOR}$(_mick_vim_pwd)'
 local current_time='${OSEP}${TIMECOLOR}%T%{$reset_color%}${CSEP}'
 
+# inserts a newline before the command
+precmd() { print "" }
 
-PROMPT="
-${current_dir} ${git_branch}
-%b${_mick_sep_color}#:${RS}${PROMPT2COLOR}»%b%{$reset_color%} "
+PROMPT="${current_dir} ${git_branch}
+%b%{$_mick_sep_color%}#:%{$RS%}%{$PROMPT2COLOR%}»%b%{$reset_color%} "
 RPS1="${return_code}"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="${_fore_color}(${RS}"
